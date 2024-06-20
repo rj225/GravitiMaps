@@ -1,46 +1,67 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaPlus, FaTrash } from 'react-icons/fa';
-import { Autocomplete } from '@react-google-maps/api';
+import React, { useState, useRef, useEffect } from "react";
+import { FaPlus, FaTrash, FaCircle } from "react-icons/fa";
+import { Autocomplete } from "@react-google-maps/api";
 
-const InputForm = ({ setOrigin, setDestination, waypoints, setWaypoints, handleSearch}) => {
-  const [waypointInput, setWaypointInput] = useState('');
+const InputForm = ({
+  setOrigin,
+  setDestination,
+  waypoints,
+  setWaypoints,
+  handleSearch,
+}) => {
+  const [waypointInput, setWaypointInput] = useState("");
   const originRef = useRef(null);
   const destinationRef = useRef(null);
+  const waypointRefs = useRef(null);
+  const waypointInputRef = useRef(null)
 
-  const handleAddWaypoint = () => {
-    setWaypoints([...waypoints, waypointInput]);
-    setWaypointInput('');
-  };
-
-//   const handlePlaceSelect = (autocomplete, setInput) => {
-//     const place = autocomplete.formattedPrediction;
-//     console.log("palces",place);
-//     if (place) {
-//       setInput(place);
-//     }
-//   };
-
+  //   const handlePlaceSelect = (autocomplete, setInput) => {
+  //     const place = autocomplete.formattedPrediction;
+  //     console.log("palces",place);
+  //     if (place) {
+  //       setInput(place);
+  //     }
+  //   };
 
   const handleOriginSelect = (place) => {
-    console.log(place);
+    // console.log(place);
     if (place) {
-        console.log("origin worked" , place.gm_accessors_.place.Cs.formattedPrediction);
-      setOrigin(place.gm_accessors_.place.Cs.formattedPrediction);
+      const values = Object.values(place.gm_accessors_.place);
+      // console.log("origin worked", values[0].formattedPrediction);
+      setOrigin(values[0].formattedPrediction);
     }
   };
 
   const handleDestinationSelect = (place) => {
     if (place) {
-        // console.log("destinaton worked" , place.gm_accessors_.place.As.formattedPrediction);
-      setDestination(place.gm_accessors_.place.Cs.formattedPrediction);
+      // console.log("destinaton worked" , place.gm_accessors_.place.As.formattedPrediction);
+      const values = Object.values(place.gm_accessors_.place);
+      setDestination(values[0].formattedPrediction);
+    }
+  };
+
+  const handleWaypointSelect = (place) => {
+    const values = Object.values(place.gm_accessors_.place);
+    if (values !== null) {
+      setWaypointInput(values[0].formattedPrediction);
+      // console.log(values[0].formattedPrediction);
+    }
+  }
+
+  const handleAddWaypoint = () => {
+    if (waypointInput !== '' || waypointInput !== null) {
+      setWaypoints([...waypoints, waypointInput]);
+      // setWaypointInput(""); 
+      waypointInputRef.current.value = "";
     }
   };
 
   return (
-    <div className="p-4 bg-white shadow-md rounded-md">
-      <div className="mb-4">
+    <div className="p-4 font-ibmsans flex items-center space-x-2 justify-center">
+      <div className=" w-1/2">
+      <div className="mb-4 relative">
         <Autocomplete
-          onLoad={(autocomplete) => originRef.current = autocomplete}
+          onLoad={(autocomplete) => (originRef.current = autocomplete)}
           onPlaceChanged={() => handleOriginSelect(originRef.current)}
         >
           <input
@@ -50,10 +71,11 @@ const InputForm = ({ setOrigin, setDestination, waypoints, setWaypoints, handleS
             // onClick={setFetchDirections(false)}
           />
         </Autocomplete>
+        <FaCircle className="absolute text-green-500 top-3 left-3" />
       </div>
       <div className="mb-4">
         <Autocomplete
-          onLoad={(autocomplete) => destinationRef.current = autocomplete}
+          onLoad={(autocomplete) => (destinationRef.current = autocomplete)}
           onPlaceChanged={() => handleDestinationSelect(destinationRef.current)}
         >
           <input
@@ -65,31 +87,48 @@ const InputForm = ({ setOrigin, setDestination, waypoints, setWaypoints, handleS
         </Autocomplete>
       </div>
       <div className="mb-4">
-        <input
-          type="text"
-          value={waypointInput}
-          onChange={(e) => setWaypointInput(e.target.value)}
-          placeholder="Add Waypoint"
-          className="border p-2 rounded w-full"
-        //   onClick={setFetchDirections(false)}
-        />
-        <button onClick={handleAddWaypoint} className="mt-2 btn-primary flex items-center">
+      <Autocomplete
+          onLoad={(autocomplete) => (waypointRefs.current = autocomplete)}
+          onPlaceChanged={() => handleWaypointSelect(waypointRefs.current)}
+        >
+          <input
+            type="text"
+            placeholder="Add Waypoint"
+            ref={waypointInputRef}
+            className="border p-2 rounded w-full"
+          />
+        </Autocomplete>
+        <button
+          onClick={handleAddWaypoint}
+          className="mt-2 btn-primary flex items-center"
+        >
           <FaPlus /> Add Waypoint
         </button>
       </div>
       <ul className="mt-4">
         {waypoints.map((waypoint, index) => (
           <li key={index} className="flex justify-between items-center mb-2">
-            {waypoint}
-            <button onClick={() => setWaypoints(waypoints.filter((_, i) => i !== index))} className="text-red-500">
+            <span>{waypoint}</span>
+            <button
+              onClick={() =>
+                setWaypoints(waypoints.filter((_, i) => i !== index))
+              }
+              className="text-red-500"
+            >
               <FaTrash />
             </button>
           </li>
         ))}
       </ul>
-      <button onClick={handleSearch} className="mt-4 w-full bg-green-500 text-white p-2 rounded">
+      </div>
+      <div className=" w-1/2">
+      <button
+        onClick={handleSearch}
+        className="mt-4 w-full bg-green-500 text-white p-2 rounded"
+      >
         Search
       </button>
+      </div>
     </div>
   );
 };

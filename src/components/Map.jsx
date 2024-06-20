@@ -40,9 +40,9 @@ const Map = ({
 
   return (
     <GoogleMap
-      mapContainerStyle={{ height: "50vh", width: "100%" }}
+      mapContainerStyle={{ height: "60vh", width: "100%" }}
       center={{ lat: 12.9716, lng: 77.5946 }}
-      zoom={14}
+      zoom={17}
     >
       {origin && destination && fetchDirections && (
         <DirectionsService
@@ -66,8 +66,8 @@ const Map = ({
         />
       )}
 
-      {origin && <Marker position={origin} />}
-      {destination && <Marker position={destination} />}
+      {/* {origin && destination && directions && <Marker position={origin} />}
+      {origin && destination && directions &&  <Marker position={destination} />} */}
     </GoogleMap>
   );
 };

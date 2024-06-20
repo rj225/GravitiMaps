@@ -5,6 +5,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      ibmsans: ['IBM Plex Sans', 'sans-serif'],
+      worksans: ['Work Sans', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],

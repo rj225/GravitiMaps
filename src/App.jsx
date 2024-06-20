@@ -14,8 +14,8 @@ const App = () => {
 
   const handleSearch = () => {
     setFetchDirections(true);
-    console.log("origin :", origin);
-    console.log("destination :" ,destination);
+    // console.log("origin :", origin);
+    // console.log("destination :" ,destination);
   };
 
   const resetFetchDirections = () => {
@@ -24,12 +24,14 @@ const App = () => {
 
   return (
     <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
-      <div className="bg-[#F4F8FA] flex justify-center items-center h-screen">
-        <div className="container border-2">
+      <div className="bg-[#F4F8FA] flex justify-center items-center w-screen h-screen">
+        <div className=" w-full h-full">
           <Navbar />
-          <h3 className="font-bold text-center text-2xl my-4">Let's calculate distance from Google maps</h3>
+          <div className='flex font-worksans justify-center items-center'>
+          <div className='container p-4'>
+          <h3 className="text-center text-[#1B31A8] text-xl my-4">Let's calculate <strong>distance</strong>  from Google maps</h3>
           <div className="flex">
-            <div className="w-1/2 p-4">
+            <div className="w-1/2 space-x-1 p-4">
               <InputForm
                 setOrigin={setOrigin}
                 setDestination={setDestination}
@@ -48,6 +50,8 @@ const App = () => {
                 resetFetchDirections={resetFetchDirections} 
               />
             </div>
+          </div>
+          </div>
           </div>
         </div>
       </div>
