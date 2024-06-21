@@ -79,7 +79,7 @@ const App = () => {
             </div>
           </div>
         </div>
-        <ToastContainer pauseOnHover={false} theme="colored" pauseOnFocusLoss={false}/>
+        <ToastContainer autoClose={2000} pauseOnHover={false} theme="colored" pauseOnFocusLoss={false}/>
       </div>
     </LoadScript>
   );

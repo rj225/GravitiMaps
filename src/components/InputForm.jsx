@@ -67,7 +67,7 @@ const InputForm = ({
       setWaypointInput("");
       waypointInputRef.current.value = "";
     } else {
-      toast.error("Please enter a stop");
+      toast.error("Please enter a stop first");
     }
   };
 
