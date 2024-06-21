@@ -11,6 +11,11 @@ const App = () => {
   const [destination, setDestination] = useState('');
   const [waypoints, setWaypoints] = useState([]);
   const [fetchDirections, setFetchDirections] = useState(false);
+  const [originDisplay , setOriginDisplay] = useState("origin");
+  const [destinationDisplay , setDestinationDisplay] = useState("destination");
+  const [kmDisplay , setKmDisplay] = useState("NA");
+  const [timeDisplay , setTimeDisplay] = useState("NA");
+  const [routeNameDisplay , setRouteNameDisplay] = useState("route");
 
   const handleSearch = () => {
     setFetchDirections(true);
@@ -24,14 +29,14 @@ const App = () => {
 
   return (
     <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
-      <div className="bg-[#F4F8FA] flex justify-center items-center w-screen h-screen">
+      <div className="bg-[#F4F8FA] flex justify-center items-center w-screen h-full md:h-screen">
         <div className=" w-full h-full">
           <Navbar />
           <div className='flex font-worksans justify-center items-center'>
-          <div className='container p-4'>
-          <h3 className="text-center text-[#1B31A8] text-xl my-4">Let's calculate <strong>distance</strong>  from Google maps</h3>
-          <div className="flex">
-            <div className="w-1/2 space-x-1 p-4">
+          <div className='container w-full md:p-4'>
+          <h3 className="text-center text-[#1B31A8] md:block hidden md:text-xl text-base my-4">Let's calculate <strong>distance</strong>  from Google maps</h3>
+          <div className="flex md:flex-row h-full w-full flex-col-reverse md:h-[70vh] md:space-x-12">
+            <div className="md:w-1/2 md:mt-0 mt-1 w-full md:space-x-1">
               <InputForm
                 setOrigin={setOrigin}
                 setDestination={setDestination}
@@ -39,15 +44,25 @@ const App = () => {
                 setWaypoints={setWaypoints}
                 handleSearch={handleSearch}
                 setFetchDirections={setFetchDirections}
+                originDisplay={originDisplay}
+                destinationDisplay={destinationDisplay}
+                timeDisplay={timeDisplay}
+                kmDisplay={kmDisplay}
+                routeNameDisplay={routeNameDisplay}
               />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2 w-screen h-[38vh] md:h-full">
               <Map 
                 origin={origin} 
                 destination={destination} 
                 waypoints={waypoints} 
                 fetchDirections={fetchDirections} 
                 resetFetchDirections={resetFetchDirections} 
+                setDestinationDisplay={setDestinationDisplay}
+                setOriginDisplay={setOriginDisplay}
+                setKmDisplay={setKmDisplay}
+                setTimeDisplay={setTimeDisplay}
+                setRouteNameDisplay={setRouteNameDisplay}
               />
             </div>
           </div>

@@ -12,6 +12,11 @@ const Map = ({
   waypoints,
   fetchDirections,
   resetFetchDirections,
+  setDestinationDisplay,
+  setOriginDisplay,
+  setKmDisplay,
+  setTimeDisplay,
+  setRouteNameDisplay,
 }) => {
   const [directions, setDirections] = useState(null);
 
@@ -32,6 +37,11 @@ const Map = ({
   const directionsCallback = (response) => {
     if (response !== null && response.status === "OK") {
       console.log("Directions response:", response);
+      setOriginDisplay(response.request.origin.query)
+      setDestinationDisplay(response.request.destination.query)
+      setTimeDisplay(response.routes[0].legs[0].duration.text)
+      setKmDisplay(response.routes[0].legs[0].distance.text)
+      setRouteNameDisplay(response.routes[0].summary)
       setDirections(response);
     } else {
       console.error("Directions request failed:", response);
@@ -40,7 +50,7 @@ const Map = ({
 
   return (
     <GoogleMap
-      mapContainerStyle={{ height: "60vh", width: "100%" }}
+      mapContainerStyle={{ height: "100%", width: "100%" }}
       center={{ lat: 12.9716, lng: 77.5946 }}
       zoom={17}
     >
