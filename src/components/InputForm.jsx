@@ -152,7 +152,8 @@ const InputForm = ({
       </div>
       </div>
       <div className=" flex flex-col justify-center items-center mt-1 md:w-1/2">
-      <div className="md:w-2/3 w-full border-2 space-x-1 bg-white p-2 shadow-xl rounded-xl md:h-auto flex justify-around mb-4">
+      <div className="text-xs italic my-1">Note: <span className=" text-blue-800">Click <span className=" font-bold">"Calculate"</span> after changing the mode</span></div>
+      <div className="md:w-5/6 w-2/3 border-2 space-x-1 bg-white p-2 shadow-xl rounded-xl md:h-auto flex justify-around mb-4">
         <button
           onClick={() => handleModeChange("DRIVING")}
           className={`flex items-center md:px-3 p-2 md:py-3 rounded-full ${selectedMode === "DRIVING" ? "bg-blue-600 text-white ring-2 duration-500 ring-blue-200" : "bg-gray-200 text-gray-800"}`}
@@ -174,7 +175,7 @@ const InputForm = ({
       </div>
       <button
         onClick={handleSearch}
-        className="md:mt-4 bg-[#1B31A8] px-5 py-2 md:px-7 md:py-4 md:text-xl text-lg rounded-full text-white"
+        className="md:mt-4 bg-[#1B31A8] px-5 py-2 lg:px-7 lg:py-4 md:px-6 md:py-3 md:text-xl text-lg rounded-full text-white"
       >
         Calculate
       </button>
@@ -183,14 +184,14 @@ const InputForm = ({
 
       
       <div className="w-full md:h-2/6 md:mt-0 mt-2 shadow-md rounded-xl overflow-hidden">
-        <div className="md:text-2xl text-base items-center flex font-extrabold px-2 py-3 md:px-3 md:py-6 bg-white h-1/2">
-        <div  className=" flex justify-around items-center w-1/2">
+        <div className="lg:text-2xl text-base items-center md:flex-row flex-col flex font-extrabold px-2 py-3 md:px-3 md:py-6 bg-white h-1/2">
+        <div  className=" flex md:justify-around justify-between md:border-0 md:pb-0 pb-1 border-b-[0.5px] border-gray-400 w-full items-center md:w-1/2">
         <span>Distance</span>
-        <span className=" text-[#0079FF] text-base md:text-2xl">{kmDisplay}</span>
+        <span className=" text-[#0079FF] text-base lg:text-2xl">{kmDisplay}</span>
         </div>
-        <div className=" flex justify-around items-center w-1/2">
+        <div className=" flex md:justify-around justify-between md:mt-0 mt-1 items-center w-full md:w-1/2">
         <span>Time</span>
-        <span className=" text-[#0079FF] text-base md:text-2xl">{timeDisplay}</span>
+        <span className=" text-[#0079FF] text-base lg:text-2xl">{timeDisplay}</span>
         </div>
         </div>
         <div className="md:text-sm text-xs h-1/2 flex justify-center items-center px-4 py-2 overflow-auto">
