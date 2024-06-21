@@ -59,7 +59,7 @@ const InputForm = ({
   const handleAddWaypoint = () => {
     if (waypointInput !== '' || waypointInput !== null) {
       setWaypoints([...waypoints, waypointInput]);
-      // setWaypointInput(""); 
+      setWaypointInput(""); 
       waypointInputRef.current.value = "";
     }
   };
