@@ -5,6 +5,7 @@ import {
   DirectionsRenderer,
   Marker,
 } from "@react-google-maps/api";
+import { toast } from 'react-toastify';
 
 const Map = ({
   origin,
@@ -17,6 +18,7 @@ const Map = ({
   setKmDisplay,
   setTimeDisplay,
   setRouteNameDisplay,
+  travelMode
 }) => {
   const [directions, setDirections] = useState(null);
 
@@ -43,6 +45,7 @@ const Map = ({
       setKmDisplay(response.routes[0].legs[0].distance.text)
       setRouteNameDisplay(response.routes[0].summary)
       setDirections(response);
+      toast.success("Search Complete")
     } else {
       console.error("Directions request failed:", response);
     }
@@ -63,7 +66,7 @@ const Map = ({
               location,
               stopover: true,
             })),
-            travelMode: "DRIVING",
+            travelMode: travelMode,
           }}
           callback={directionsCallback}
         />
