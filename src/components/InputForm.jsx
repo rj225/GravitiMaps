@@ -67,7 +67,7 @@ const InputForm = ({
   return (
     <div className="font-ibmsans w-full md:flex p-4 md:p-0 flex-col md:justify-center md:items-center md:h-full md:pb-4">
       <div className="flex w-full md:flex-row flex-col md:h-4/6 items-center md:mb-5 md:space-x-2 justify-center">
-      <div className="md:w-1/2 w-full md:h-fit md:px-3 md:p-0">
+      <div className="md:w-1/2 w-full md:h-fit md:p-0">
       <div className="md:mb-4 mb-2 relative">
       <label htmlFor="origin" className=" hidden md:block my-2"> Origin </label>
         <Autocomplete
@@ -81,7 +81,7 @@ const InputForm = ({
             // onClick={setFetchDirections(false)}
           />
         </Autocomplete>
-        <FaCircle className="absolute border-black rounded-full border-2 p-[0.8px] text-green-500 md:top-9 top-3 left-3" />
+        <FaCircle className="absolute border-black rounded-full border-2 p-[0.8px] text-green-500 md:top-11 top-3 left-3" />
       </div>
       <div className="mb-1 relative">
       <label htmlFor="stops" className=" my-2 hidden md:block"> Stops </label>
@@ -97,7 +97,7 @@ const InputForm = ({
             className="border p-2 pl-8 rounded w-full"
           />
         </Autocomplete>
-        <img src={destinationactivelogo} alt="none" className="absolute md:top-9 top-3 left-3" />
+        <img src={destinationactivelogo} alt="none" className="absolute md:top-11 top-3 left-3" />
         <div
           onClick={handleAddWaypoint}
           className="flex text-sm justify-end cursor-pointer mt-2 text-right items-center"
@@ -134,7 +134,7 @@ const InputForm = ({
           />
           
         </Autocomplete>
-        <FaLocationDot className="absolute rounded-full text-green-950 md:top-9 top-3 left-3" />
+        <FaLocationDot className="absolute rounded-full text-green-950 md:top-11 top-3 left-3" />
       </div>
       </div>
       <div className=" flex justify-center items-center mt-1 md:w-1/2">
