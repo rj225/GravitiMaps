@@ -66,7 +66,7 @@ const InputForm = ({
 
   return (
     <div className="font-ibmsans w-full md:flex p-4 md:p-0 flex-col md:justify-center md:items-center md:h-full md:pb-4">
-      <div className="flex w-full md:flex-row flex-col md:h-4/6 items-center md:space-x-2 justify-center">
+      <div className="flex w-full md:flex-row flex-col md:h-4/6 items-center md:mb-5 md:space-x-2 justify-center">
       <div className="md:w-1/2 w-full md:h-fit md:px-3 md:p-0">
       <div className="md:mb-4 mb-2 relative">
       <label htmlFor="origin" className=" hidden md:block my-2"> Origin </label>
